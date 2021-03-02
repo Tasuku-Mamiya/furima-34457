@@ -25,34 +25,73 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column     | Type   | Options  |
-| --------   | ------ | -------- |
-| email      | string | NOT NULL |
-| password   | string | NOT NULL |
-| name       | string | NOT NULL |
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| e-mail            | string  | null: false |
+| password         | string  | null: false |
+| family_name      | string  | null: false |
+| first_name       | string  | null: false |
+| family_name_kana | string  | null: false |
+| first_name_kana  | string  | null: false |
+| birthday         | integer | null: false |
+
+### Association
+
+- has_many :items
+- has_many :buys
+- has_many :histories
 
 
 
 ## items テーブル
 
-| Column     | Type       | Options  |
-| ---------- | ---------- | -------- |
-| item_name  | string     | NOT NULL |
-| category   | text       | NOT NULL |
-| price      | integer    | NOT NULL |
-| user       | references |          |
+| Column               | Type       | Options                        |
+| -------------------- | ---------- | ------------------------------ |
+| item_name            | string     | null: false                    |
+| category             | string     | null: false                    |
+| price                | integer    | null: false                    |
+| item_description     | text       | null: false                    |
+| shipping_area        | string     | null: false                    |
+| item_status          | string     | null: false                    |
+| shipping_cost_burden | string     | null: false                    |
+| delivery_days        | integer    | null: false                    |
+| user                 | references | null: false, foreign_key: true |
 
-## buy テーブル
+### Association
 
-| Column    | Type       | Options  |
-| --------- | ---------- | -------- |
-| address   | string     | NOT NULL |
-| user      | references |          |
-| prototype | references |          |
+- belongs_to :users
+- has_one    :buys
+- has_one    :histories
+
+
+## buys テーブル
+
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| phone_number   | integer    | null: false                    |
+| postal_code    | integer    | null: false                    |
+| prefecture     | string     | null: false                    |
+| city           | integer    | null: false                    |
+| address_line_1 | text       | null: false                    |
+| address_line_2 | text       |                                |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :items
+- belongs_to :buys
+- has_one :histories
 
 ## histories テーブル
 
-| Column    | Type       | Options  |
-| --------- | ---------- | -------- |
-| user      | references |          |
-| item      | references |          |
+| Column    | Type       | Options                                |
+| --------- | ---------- | -------------------------------------- |
+| user      | references | null: false, foreign_key: true         |
+| item      | references | null: false, foreign_key: true         |
+
+### Association
+
+- belongs_to :items
+- belongs_to :buys
+- belongs_to :histories
