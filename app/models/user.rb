@@ -7,11 +7,13 @@ class User < ApplicationRecord
   has_many :items
   has_many :histories
 
-  validates :nickname, presence: true
-  validates :password, presence: true, format: {with: /\A[a-zA-Z0-9]+\z/ }
-  validates :family_name, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :first_name, presence: true, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
-  validates :family_name_kana, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, presence: true, format: {with: /\A[ァ-ヶー－]+\z/ }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :password, format: {with: /\A[a-zA-Z0-9]+\z/ }
+    validates :family_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :family_name_kana, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :first_name_kana, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :birthday
+  end
 end
