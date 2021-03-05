@@ -5,6 +5,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    if @item.valid?
+      @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def create
