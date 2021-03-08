@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :item_status
   belongs_to :shipping_cost_burden
   belongs_to :shipping_area
-  belongs_to :delivery_days
+  belongs_to :delivery_day
 
   with_options presence: true do
     validates :image
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :item_status_id, numericality: { other_than: 1, message: "Select"}
     validates :shipping_cost_burden_id, numericality: { other_than: 1, message: "Select"}
     validates :shipping_area_id, numericality: { other_than: 0, message: "Select"}
-    validates :delivery_days_id, numericality: { other_than: 1, message: "Select"}
+    validates :delivery_day_id, numericality: { other_than: 1, message: "Select"}
     validates :price
   end
   validates :price, numericality: { only_integer: true, message: "Half-width number" }
