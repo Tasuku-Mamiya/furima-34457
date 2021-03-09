@@ -53,8 +53,8 @@ Things you may want to cover:
 | item_description         | text       | null: false                    |
 | shipping_area_id         | integer    | null: false                    |
 | item_status_id           | integer    | null: false                    |
-| shipping_cost_burden _id | integer    | null: false                    |
-| delivery_days_id         | integer    | null: false                    |
+| shipping_cost_burden_id  | integer    | null: false                    |
+| delivery_day_id          | integer    | null: false                    |
 | user                     | references | null: false, foreign_key: true |
 
 ### Association
