@@ -63,13 +63,13 @@ Things you may want to cover:
 - has_one    :history
 
 
-## buys テーブル
+## orders テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | phone_number     | string     | null: false                    |
 | postal_code      | string     | null: false                    |
-| prefecture_id    | integer    | null: false                    |
+| shipping_area_id | integer    | null: false                    |
 | city             | string     | null: false                    |
 | address_line     | string     | null: false                    |
 | building         | string     |                                |
@@ -91,4 +91,4 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :buy
+- has_one    :order
