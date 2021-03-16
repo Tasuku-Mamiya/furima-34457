@@ -13,6 +13,12 @@ RSpec.describe HistoryOrder, type: :model do
       it 'item_id, user_id, token, postal_code, shipping_area_id, city, address_line, phone_numberがあれば購入できる' do
         expect(@history_order).to be_valid
       end
+
+      it 'buildingは空でも空でなくても購入できる' do
+        @history_order.building = nil, '長田ビル'
+        expect(@history_order).to be_valid
+      end
+
     end
 
     context '購入できないとき' do

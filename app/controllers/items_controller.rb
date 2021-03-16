@@ -58,7 +58,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index_two
-    redirect_to action: :index
+    redirect_to action: :index if @item.history.present?
   end
 
 end
