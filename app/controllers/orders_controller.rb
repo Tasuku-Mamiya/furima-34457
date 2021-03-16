@@ -1,9 +1,12 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @item = Item.find(params[:item_id])
     @history_order = HistoryOrder.new
     if @item.history.present?
+      redirect_to root_path
+    end
+    if current_user == @item.user
       redirect_to root_path
     end
   end
@@ -34,5 +37,5 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
-  
+
 end
